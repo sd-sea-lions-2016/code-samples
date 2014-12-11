@@ -3,8 +3,16 @@ require 'rspec'
 require_relative '../binary_search'
 
 describe "#binary_search" do
-  it "returns -1 if the item is not found" do
+  it "returns -1 if collection is empty" do
     expect(binary_search 0, Array.new ).to eq -1
+  end
+
+  it "returns -1 if target is less than smallest value in collection" do
+    expect(binary_search 0, (1..10).to_a).to eq -1
+  end
+
+  it "returns -1 if target is greater than largest value in collection" do
+    expect(binary_search 11, (1..10).to_a).to eq -1
   end
 
   it "finds index of target in a collection size of 1" do
