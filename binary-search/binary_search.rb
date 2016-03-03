@@ -1,7 +1,7 @@
 def binary_search(target, collection, min_index = 0, max_index = collection.size - 1)
   return nil if collection.empty? || max_index < min_index
 
-  middle_index = min_index + ((max_index - min_index) / 2)
+  middle_index = (min_index + max_index) / 2
 
   return case
          when collection[middle_index] == target
