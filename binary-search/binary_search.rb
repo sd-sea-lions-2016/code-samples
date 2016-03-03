@@ -1,10 +1,5 @@
-require 'debugger'
-
-def binary_search(target, collection, min_index = 0, max_index = nil)
-  max_index = collection.size - 1 unless max_index
-
-
-  return -1 if collection.empty? || max_index < min_index
+def binary_search(target, collection, min_index = 0, max_index = collection.size - 1)
+  return nil if collection.empty? || max_index < min_index
 
   middle_index = min_index + ((max_index - min_index) / 2)
 
