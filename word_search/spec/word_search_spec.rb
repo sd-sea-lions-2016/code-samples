@@ -55,7 +55,7 @@ describe 'forward_diagonals_from' do
 end
 
 describe 'backward_diagonals_from' do
-  it 'should find correct forward diagonals' do
+  it 'should find correct backward diagonals' do
     expect(backward_diagonals_from(SMALL_PUZZLE)).to eq SMALL_PUZZLE_BACKWARD_DIAGONALS
   end
 end
