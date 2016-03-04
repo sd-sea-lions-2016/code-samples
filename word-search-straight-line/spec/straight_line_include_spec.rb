@@ -50,6 +50,10 @@ describe '#straight_line_include?' do
   it "finds words in a diagonal from bottom right to top left" do
     expect(straight_line_include?("brs", puzzle)).to be true
   end
+
+  it "does not find words that are not in a diagonal" do
+    expect(straight_line_include?("itxia", puzzle)).to be false
+  end
 end
 
 describe "#combined_rows" do
