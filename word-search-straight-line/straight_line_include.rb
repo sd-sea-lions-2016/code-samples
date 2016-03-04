@@ -59,11 +59,13 @@ def top_right_to_bottom_left_diagonals_in_columns(puzzle)
 end
 
 def pad_back(collection, target_size)
-  size_difference = target_size - collection.size
-  collection + Array.new(size_difference, nil)
+  collection + Array.new(size_diff(collection, target_size), nil)
 end
 
 def pad_front(collection, target_size)
-  size_difference = target_size - collection.size
-  Array.new(size_difference, nil) + collection
+  Array.new(size_diff(collection, target_size), nil) + collection
+end
+
+def size_diff(collection, target_size)
+  target_size - collection.size
 end

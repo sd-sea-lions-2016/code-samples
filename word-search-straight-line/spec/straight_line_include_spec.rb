@@ -148,3 +148,10 @@ describe "#pad_front" do
     expect(pad_front(numbers, 10)).to eq [nil, nil, nil, nil, nil, nil, nil, 1, 2, 3]
   end
 end
+
+describe "#size_diff" do
+  it "returns the difference between the collection size and the target size" do
+    numbers = [1, 2, 3]
+    expect(size_diff(numbers, 5)).to eq 2
+  end
+end
