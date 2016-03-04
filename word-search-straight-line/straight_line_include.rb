@@ -50,11 +50,11 @@ def top_right_to_bottom_left_diagonals(puzzle)
 end
 
 def top_right_to_bottom_left_diagonals_in_columns(puzzle)
-  desired_row_length = puzzle.length * 2 - 1
+  row_length_to_align_diagonals = puzzle.length * 2 - 1
 
   puzzle.map.with_index do |row, row_index|
-    row_with_padded_back = pad_back(row, desired_row_length - row_index)
-    pad_front(row_with_padded_back, desired_row_length)
+    row_with_padded_back = pad_back(row, row_length_to_align_diagonals - row_index)
+    pad_front(row_with_padded_back, row_length_to_align_diagonals)
   end
 end
 
