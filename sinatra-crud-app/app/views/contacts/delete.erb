@@ -1,0 +1,10 @@
+<div class="container">
+
+  <p>Are you sure you want to delete this contact?</p>
+  <form action="/contacts/<%= @contact.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Yes, Delete It!">
+    <a href="/contacts/<%= @contact.id %>">Cancel</a>
+  </form>
+
+</div>
