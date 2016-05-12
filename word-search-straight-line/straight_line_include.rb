@@ -4,20 +4,20 @@ end
 
 def straight_lines(puzzle)
   combined_rows(puzzle) +
-  combined_rows_backward(puzzle) +
+  combined_rows_reversed(puzzle) +
   combined_columns(puzzle) +
-  combined_columns_backward(puzzle) +
-  combined_diagonals_top_right_to_bottom_left(puzzle) +
-  combined_diagonals_bottom_left_to_top_right(puzzle) +
-  combined_diagonals_top_left_to_bottom_right(puzzle) +
-  combined_diagonals_bottom_right_to_top_left(puzzle)
+  combined_columns_reversed(puzzle) +
+  combined_uphill_diagonals_reversed(puzzle) +
+  combined_uphill_diagonals(puzzle) +
+  combined_downhill_diagonals(puzzle) +
+  combined_downhill_diagonals_reversed(puzzle)
 end
 
 def combined_rows(puzzle)
   puzzle.map(&:join)
 end
 
-def combined_rows_backward(puzzle)
+def combined_rows_reversed(puzzle)
   combined_rows(puzzle).map(&:reverse)
 end
 
@@ -25,24 +25,24 @@ def combined_columns(puzzle)
   combined_rows(puzzle.transpose)
 end
 
-def combined_columns_backward(puzzle)
+def combined_columns_reversed(puzzle)
   combined_columns(puzzle).map(&:reverse)
 end
 
-def combined_diagonals_top_right_to_bottom_left(puzzle)
+def combined_uphill_diagonals_reversed(puzzle)
   combined_rows(top_right_to_bottom_left_diagonals(puzzle))
 end
 
-def combined_diagonals_bottom_left_to_top_right(puzzle)
-  combined_diagonals_top_right_to_bottom_left(puzzle).map(&:reverse)
+def combined_uphill_diagonals(puzzle)
+  combined_uphill_diagonals_reversed(puzzle).map(&:reverse)
 end
 
-def combined_diagonals_top_left_to_bottom_right(puzzle)
-  combined_diagonals_top_right_to_bottom_left(puzzle.map(&:reverse)).reverse
+def combined_downhill_diagonals(puzzle)
+  combined_uphill_diagonals_reversed(puzzle.map(&:reverse)).reverse
 end
 
-def combined_diagonals_bottom_right_to_top_left(puzzle)
-  combined_diagonals_top_left_to_bottom_right(puzzle).map(&:reverse)
+def combined_downhill_diagonals_reversed(puzzle)
+  combined_downhill_diagonals(puzzle).map(&:reverse)
 end
 
 def top_right_to_bottom_left_diagonals(puzzle)
