@@ -3,46 +3,42 @@ def straight_line_include?(word, puzzle)
 end
 
 def straight_lines(puzzle)
-  combined_rows(puzzle) +
-  combined_rows_reversed(puzzle) +
-  combined_columns(puzzle) +
-  combined_columns_reversed(puzzle) +
-  combined_uphill_diagonals_reversed(puzzle) +
-  combined_uphill_diagonals(puzzle) +
-  combined_downhill_diagonals(puzzle) +
-  combined_downhill_diagonals_reversed(puzzle)
+  joined_rows(puzzle) + joined_rows_reversed(puzzle) +
+  joined_columns(puzzle) + joined_columns_reversed(puzzle) +
+  joined_uphill_diagonals(puzzle) + joined_uphill_diagonals_reversed(puzzle) +
+  joined_downhill_diagonals(puzzle) + joined_downhill_diagonals_reversed(puzzle)
 end
 
-def combined_rows(puzzle)
+def joined_rows(puzzle)
   puzzle.map(&:join)
 end
 
-def combined_rows_reversed(puzzle)
-  combined_rows(puzzle).map(&:reverse)
+def joined_rows_reversed(puzzle)
+  joined_rows(puzzle).map(&:reverse)
 end
 
-def combined_columns(puzzle)
-  combined_rows(puzzle.transpose)
+def joined_columns(puzzle)
+  joined_rows(puzzle.transpose)
 end
 
-def combined_columns_reversed(puzzle)
-  combined_columns(puzzle).map(&:reverse)
+def joined_columns_reversed(puzzle)
+  joined_columns(puzzle).map(&:reverse)
 end
 
-def combined_uphill_diagonals_reversed(puzzle)
-  combined_rows(top_right_to_bottom_left_diagonals(puzzle))
+def joined_uphill_diagonals_reversed(puzzle)
+  joined_rows(top_right_to_bottom_left_diagonals(puzzle))
 end
 
-def combined_uphill_diagonals(puzzle)
-  combined_uphill_diagonals_reversed(puzzle).map(&:reverse)
+def joined_uphill_diagonals(puzzle)
+  joined_uphill_diagonals_reversed(puzzle).map(&:reverse)
 end
 
-def combined_downhill_diagonals(puzzle)
-  combined_uphill_diagonals_reversed(puzzle.map(&:reverse)).reverse
+def joined_downhill_diagonals(puzzle)
+  joined_uphill_diagonals_reversed(puzzle.map(&:reverse)).reverse
 end
 
-def combined_downhill_diagonals_reversed(puzzle)
-  combined_downhill_diagonals(puzzle).map(&:reverse)
+def joined_downhill_diagonals_reversed(puzzle)
+  joined_downhill_diagonals(puzzle).map(&:reverse)
 end
 
 def top_right_to_bottom_left_diagonals(puzzle)
