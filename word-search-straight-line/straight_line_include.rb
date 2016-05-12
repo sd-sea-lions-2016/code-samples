@@ -1,12 +1,12 @@
 def straight_line_include?(word, puzzle)
-  straight_lines(puzzle).any? { |row| row.match(word) }
+  straight_lines(puzzle).any? { |row| row.match(word) || row.match(word.reverse) }
 end
 
 def straight_lines(puzzle)
-  joined_rows(puzzle) + joined_rows_reversed(puzzle) +
-  joined_columns(puzzle) + joined_columns_reversed(puzzle) +
-  joined_uphill_diagonals(puzzle) + joined_uphill_diagonals_reversed(puzzle) +
-  joined_downhill_diagonals(puzzle) + joined_downhill_diagonals_reversed(puzzle)
+  joined_rows(puzzle) +
+  joined_columns(puzzle) +
+  joined_uphill_diagonals(puzzle) +
+  joined_downhill_diagonals(puzzle)
 end
 
 def joined_rows(puzzle)
