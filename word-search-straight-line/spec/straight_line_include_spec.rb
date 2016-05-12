@@ -77,20 +77,6 @@ describe "#joined_columns" do
   end
 end
 
-describe "#joined_columns_reversed" do
-  it "combines letters in each column to a string with the order reversed" do
-    puzzle = [["a", "b"], ["c", "d"]]
-    expect(joined_columns_reversed(puzzle)).to eq ["ca", "db"]
-  end
-end
-
-describe "#joined_uphill_diagonals_reversed" do
-  it "combines letters in each top-right to bottom-left diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(joined_uphill_diagonals_reversed(puzzle)).to eq ["a", "bd", "ceg", "fh", "i"]
-  end
-end
-
 describe "#joined_uphill_diagonals" do
   it "combines letters in each bottom-left to top-right diagonal" do
     puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
@@ -100,15 +86,10 @@ end
 
 describe "#joined_downhill_diagonals" do
   it "combines letters in each top-left to bottom-right diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
+    puzzle = [["a", "b", "c"],
+              ["d", "e", "f"],
+              ["g", "h", "i"]]
     expect(joined_downhill_diagonals(puzzle)).to eq ["g", "dh", "aei", "bf", "c"]
-  end
-end
-
-describe "#joined_downhill_diagonals" do
-  it "combines letters in each top-left to bottom-right diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(joined_downhill_diagonals_reversed(puzzle)).to eq ["g", "hd", "iea", "fb", "c"]
   end
 end
 
