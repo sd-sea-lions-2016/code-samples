@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>New Contact</h1>
+
+  <%#= h @contact.inspect # Uncomment beginning of line to see contact object %>
+
+  <form method="post" action="/contacts">
+    <input type="hidden" name="_method" value="post">
+    <%= erb :'contacts/_form' %>
+    <button type="submit">Create Contact</button>
+  </form>
+
+</div>

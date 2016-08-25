@@ -56,59 +56,40 @@ describe '#straight_line_include?' do
   end
 end
 
-describe "#combined_rows" do
+describe "#joined_rows" do
   it "combines letters in each row to a string" do
     puzzle = [["a", "b"], ["c", "d"]]
-    expect(combined_rows(puzzle)).to eq ["ab", "cd"]
+    expect(joined_rows(puzzle)).to eq ["ab", "cd"]
   end
 end
 
-describe "#combined_rows_backward" do
+describe "#joined_rows_reversed" do
   it "combines letters in each row to a string with the order reversed" do
     puzzle = [["a", "b"], ["c", "d"]]
-    expect(combined_rows_backward(puzzle)).to eq ["ba", "dc"]
+    expect(joined_rows_reversed(puzzle)).to eq ["ba", "dc"]
   end
 end
 
-describe "#combined_columns" do
+describe "#joined_columns" do
   it "combines letters in each column to a string" do
     puzzle = [["a", "b"], ["c", "d"]]
-    expect(combined_columns(puzzle)).to eq ["ac", "bd"]
+    expect(joined_columns(puzzle)).to eq ["ac", "bd"]
   end
 end
 
-describe "#combined_columns_backward" do
-  it "combines letters in each column to a string with the order reversed" do
-    puzzle = [["a", "b"], ["c", "d"]]
-    expect(combined_columns_backward(puzzle)).to eq ["ca", "db"]
-  end
-end
-
-describe "#combined_diagonals_top_right_to_bottom_left" do
-  it "combines letters in each top-right to bottom-left diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(combined_diagonals_top_right_to_bottom_left(puzzle)).to eq ["a", "bd", "ceg", "fh", "i"]
-  end
-end
-
-describe "#combined_diagonals_bottom_left_to_top_right" do
+describe "#joined_uphill_diagonals" do
   it "combines letters in each bottom-left to top-right diagonal" do
     puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(combined_diagonals_bottom_left_to_top_right(puzzle)).to eq ["a", "db", "gec", "hf", "i"]
+    expect(joined_uphill_diagonals(puzzle)).to eq ["a", "db", "gec", "hf", "i"]
   end
 end
 
-describe "#combined_diagonals_top_left_to_bottom_right" do
+describe "#joined_downhill_diagonals" do
   it "combines letters in each top-left to bottom-right diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(combined_diagonals_top_left_to_bottom_right(puzzle)).to eq ["g", "dh", "aei", "bf", "c"]
-  end
-end
-
-describe "#combined_diagonals_top_left_to_bottom_right" do
-  it "combines letters in each top-left to bottom-right diagonal" do
-    puzzle = [["a", "b", "c"], ["d", "e", "f"], ["g", "h", "i"]]
-    expect(combined_diagonals_bottom_right_to_top_left(puzzle)).to eq ["g", "hd", "iea", "fb", "c"]
+    puzzle = [["a", "b", "c"],
+              ["d", "e", "f"],
+              ["g", "h", "i"]]
+    expect(joined_downhill_diagonals(puzzle)).to eq ["g", "dh", "aei", "bf", "c"]
   end
 end
 

@@ -1,52 +1,40 @@
 def straight_line_include?(word, puzzle)
-  straight_lines(puzzle).any? { |row| row.match(word) }
+  straight_lines(puzzle).any?{|row| row.match(word) || row.match(word.reverse) }
 end
 
 def straight_lines(puzzle)
-  combined_rows(puzzle) +
-  combined_rows_backward(puzzle) +
-  combined_columns(puzzle) +
-  combined_columns_backward(puzzle) +
-  combined_diagonals_top_right_to_bottom_left(puzzle) +
-  combined_diagonals_bottom_left_to_top_right(puzzle) +
-  combined_diagonals_top_left_to_bottom_right(puzzle) +
-  combined_diagonals_bottom_right_to_top_left(puzzle)
+  joined_rows(puzzle) +
+  joined_columns(puzzle) +
+  joined_uphill_diagonals(puzzle) +
+  joined_downhill_diagonals(puzzle)
 end
 
-def combined_rows(puzzle)
+def joined_rows(puzzle)
   puzzle.map(&:join)
 end
 
-def combined_rows_backward(puzzle)
-  combined_rows(puzzle).map(&:reverse)
+def joined_rows_reversed(puzzle)
+  joined_rows(puzzle).map(&:reverse)
 end
 
-def combined_columns(puzzle)
-  combined_rows(puzzle.transpose)
+def joined_columns(puzzle)
+  joined_rows(puzzle.transpose)
 end
 
-def combined_columns_backward(puzzle)
-  combined_columns(puzzle).map(&:reverse)
+def joined_uphill_diagonals(puzzle)
+  joined_rows(top_left_to_bottom_right_diagonals(puzzle.map(&:reverse))).map(&:reverse).reverse
 end
 
-def combined_diagonals_top_right_to_bottom_left(puzzle)
-  combined_rows(top_right_to_bottom_left_diagonals(puzzle))
-end
-
-def combined_diagonals_bottom_left_to_top_right(puzzle)
-  combined_diagonals_top_right_to_bottom_left(puzzle).map(&:reverse)
-end
-
-def combined_diagonals_top_left_to_bottom_right(puzzle)
-  combined_diagonals_top_right_to_bottom_left(puzzle.map(&:reverse)).reverse
-end
-
-def combined_diagonals_bottom_right_to_top_left(puzzle)
-  combined_diagonals_top_left_to_bottom_right(puzzle).map(&:reverse)
+def joined_downhill_diagonals(puzzle)
+  joined_rows(top_left_to_bottom_right_diagonals(puzzle))
 end
 
 def top_right_to_bottom_left_diagonals(puzzle)
   top_right_to_bottom_left_diagonals_in_columns(puzzle).transpose.map(&:compact)
+end
+
+def top_left_to_bottom_right_diagonals(puzzle)
+  top_left_to_bottom_right_diagonals_in_columns(puzzle).transpose.map(&:compact)
 end
 
 def top_right_to_bottom_left_diagonals_in_columns(puzzle)
@@ -56,6 +44,10 @@ def top_right_to_bottom_left_diagonals_in_columns(puzzle)
     row_with_padded_back = pad_back(row, row_length_to_align_diagonals - row_index)
     pad_front(row_with_padded_back, row_length_to_align_diagonals)
   end
+end
+
+def top_left_to_bottom_right_diagonals_in_columns(puzzle)
+  top_right_to_bottom_left_diagonals_in_columns(puzzle.map(&:reverse)).map(&:reverse)
 end
 
 def pad_back(collection, target_size)

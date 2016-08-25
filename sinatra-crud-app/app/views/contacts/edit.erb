@@ -1,0 +1,9 @@
+<div class="container">
+
+  <form method="post" action="/contacts/<%= @contact.id %>">
+    <input type="hidden" name="_method" value="patch">
+    <%= erb :'contacts/_form' %>
+    <button type="submit">Update</button>
+  </form>
+
+</div>
